@@ -1,7 +1,7 @@
 ## Spyro Code Utility
 
 Spyro Code Utility is a tool that allows you to easily and efficiently create 
-gameshark codes to load Spyro's position, camera, and angle, or to change Spyro's
+gameshark codes to instantly load Spyro's position, camera, and angle to a desired location, or to change Spyro's
 respawn position, and then instantly kill/respawn him. Similar to a savestate, but can be used to
 practice on real hardware! It finds the position from a bizhawk dump file you create.
 
