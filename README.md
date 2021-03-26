@@ -33,11 +33,13 @@ This is the button combination you will use to activate your code to load your s
 
 This button will generate a gameshark code to instantly teleport Spyro's position, angle, and camera to the postion 
 you were in when you saved your Bizhawk dump. You activate the code by inputting the button combination you chose above.
+The program may freeze for a brief moment while its generating the code.
 
 ## 5b. Generate Code to Respawn Spyro
 
 This will generate a gameshark code that will instantly kill, then respawn Spyro at the postion you were in when you 
 saved your bizhawk dump. You activate the code by inputting the button combination you chose above.
+The program may freeze for a brief moment while its generating the code.
 
 ## Conclusion
 
