@@ -2742,6 +2742,7 @@ int main(int, char**)
                                 if (copyClicked & 1)
                                 {
                                     ImGui::SetClipboardText(fullGamesharkCodeChar);
+                                    copyClicked = 0;
                                 }
                                 ImGui::PopStyleColor(3);
                                 ImGui::PopID();
@@ -2830,6 +2831,7 @@ int main(int, char**)
                     if (copyClicked & 1)
                     {
                         ImGui::SetClipboardText(fullGamesharkCodeChar);
+                        copyClicked = 0;
                     }
                     ImGui::PopStyleColor(3);
                     ImGui::PopID();
@@ -2931,6 +2933,7 @@ int main(int, char**)
                     if (copyClicked & 1)
                     {
                         ImGui::SetClipboardText(fullGamesharkCodeChar);
+                        copyClicked = 0;
                     }
                     ImGui::PopStyleColor(3);
                     ImGui::PopID();
@@ -3031,6 +3034,7 @@ int main(int, char**)
                     if (copyClicked & 1)
                     {
                         ImGui::SetClipboardText(fullGamesharkCodeChar);
+                        copyClicked = 0;
                     }
                     ImGui::PopStyleColor(3);
                     ImGui::PopID();
@@ -3111,6 +3115,7 @@ int main(int, char**)
                     if (copyClicked & 1)
                     {
                         ImGui::SetClipboardText(fullGamesharkCodeChar);
+                        copyClicked = 0;
                     }
                     ImGui::PopStyleColor(3);
                     ImGui::PopID();
