@@ -50,3 +50,5 @@ I hope this program helps you in some way! :)
 
 This program uses [imgui](https://github.com/ocornut/imgui) as it's GUI Lirbrary
 and [imgui filebroswer](https://github.com/AirGuanZ/imgui-filebrowser) as a file browser library for imgui
+
+Shoutouts to Drashed for the help in providing the Spyro 2 death/respawn memory addresses!
