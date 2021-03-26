@@ -1,4 +1,4 @@
-//Spyro Code Creator was created using the ImGui DirectX9 example file as a starting point for the GUI. This is why you may see comments related to ImGui.
+//Spyro Code Utility was created using the ImGui DirectX9 example file as a starting point for the GUI. This is why you may see comments related to ImGui.
 
 
 
@@ -63,9 +63,9 @@ int main(int, char**)
 {
     // Create application window
     //ImGui_ImplWin32_EnableDpiAwareness();
-    WNDCLASSEX wc = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, _T("Spyro Code Generator"), NULL };
+    WNDCLASSEX wc = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, _T("Spyro Code Utility"), NULL };
     ::RegisterClassEx(&wc);
-    HWND hwnd = ::CreateWindow(wc.lpszClassName, _T("Spyro Code Generator"), WS_OVERLAPPEDWINDOW, 100, 100, 765, 800, NULL, NULL, wc.hInstance, NULL);
+    HWND hwnd = ::CreateWindow(wc.lpszClassName, _T("Spyro Code Utility"), WS_OVERLAPPEDWINDOW, 550, 100, 765, 800, NULL, NULL, wc.hInstance, NULL);
 
     // Initialize Direct3D
     if (!CreateDeviceD3D(hwnd))
@@ -190,10 +190,10 @@ int main(int, char**)
 
 
 
-       // SPYRO CODE GENERATOR CODE
-       // SPYRO CODE GENERATOR CODE
-       // SPYRO CODE GENERATOR CODE
-       // SPYRO CODE GENERATOR CODE
+       // SPYRO CODE UTILITY CODE
+       // SPYRO CODE UTILITY CODE
+       // SPYRO CODE UTILITY CODE
+       // SPYRO CODE UTILITY CODE
 
 
 
@@ -350,7 +350,7 @@ int main(int, char**)
 
         // Create the Window
             
-            ImGui::Begin("Spyro Code Generator");                          
+            ImGui::Begin("Spyro Code Utility");                          
 
 
             if (hasCodeBeenCreated == false)
