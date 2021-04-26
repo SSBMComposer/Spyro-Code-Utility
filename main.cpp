@@ -63,9 +63,9 @@ int main(int, char**)
 {
     // Create application window
     //ImGui_ImplWin32_EnableDpiAwareness();
-    WNDCLASSEX wc = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, _T("Spyro Code Utility"), NULL };
+    WNDCLASSEX wc = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, _T("Spyro Practice Code Utility"), NULL };
     ::RegisterClassEx(&wc);
-    HWND hwnd = ::CreateWindow(wc.lpszClassName, _T("Spyro Code Utility"), WS_OVERLAPPEDWINDOW, 550, 100, 765, 800, NULL, NULL, wc.hInstance, NULL);
+    HWND hwnd = ::CreateWindow(wc.lpszClassName, _T("Spyro Code Utility"), WS_OVERLAPPEDWINDOW, 550, 100, 765, 850, NULL, NULL, wc.hInstance, NULL);
 
     // Initialize Direct3D
     if (!CreateDeviceD3D(hwnd))
@@ -130,7 +130,7 @@ int main(int, char**)
 
     // (optional) set browser properties
     fileDialog.SetTitle("Open File");
-    fileDialog.SetTypeFilters({".txt"});
+    fileDialog.SetTypeFilters({ ".txt" });
 
 
 
@@ -190,15 +190,15 @@ int main(int, char**)
 
 
 
-       // SPYRO CODE UTILITY CODE
-       // SPYRO CODE UTILITY CODE
-       // SPYRO CODE UTILITY CODE
-       // SPYRO CODE UTILITY CODE
+        // SPYRO CODE UTILITY CODE
+        // SPYRO CODE UTILITY CODE
+        // SPYRO CODE UTILITY CODE
+        // SPYRO CODE UTILITY CODE
 
 
 
 
-      // Declaring all Variables
+       // Declaring all Variables
 
 
         static int gameChoice = 0;
@@ -250,8 +250,12 @@ int main(int, char**)
         std::string lbcCamYaw5;
         std::string lbcCamYaw6;
 
+        std::string sparxHealthAddress;
+        std::string sparxHealthValue;
+        std::string infiniteLivesCode;
 
         std::string jokerCommand;
+
 
 
         std::string myData;
@@ -292,6 +296,8 @@ int main(int, char**)
         std::string gameSharkCodeL38;
         std::string gameSharkCodeL40;
         std::string gameSharkCodeL42;
+        std::string gameSharkCodeL44;
+
 
 
 
@@ -317,6 +323,7 @@ int main(int, char**)
         char gscCharL38[15];
         char gscCharL40[15];
         char gscCharL42[15];
+        char gscCharL44[15];
 
 
         std::string fullGamesharkCode;      //string that contains the full gameshark code with new lines after each code ends
@@ -334,11 +341,12 @@ int main(int, char**)
         int LINE8;
         int LINE9;
 
+        static bool publicSparxCheck = false;
+        static bool publicLivesCheck = false;
 
-        
         std::string txtFile;
         char txtFileChar[100];
-        
+
 
 
 
@@ -349,49 +357,50 @@ int main(int, char**)
 
 
         // Create the Window
-            
-            ImGui::Begin("Spyro Code Utility");                          
+
+        ImGui::Begin("Spyro Code Utility");
 
 
-            if (hasCodeBeenCreated == false)
+        if (hasCodeBeenCreated == false)
+        {
+            //ImGui::ShowDemoWindow();
+            ImGui::Text("Choose Game");
+
+            ImGui::RadioButton("Spyro 1", &gameChoice, 0); ImGui::SameLine();
+            ImGui::RadioButton("Spyro 2", &gameChoice, 1); ImGui::SameLine();
+            ImGui::RadioButton("Spyro 3 1.0", &gameChoice, 2); ImGui::SameLine();
+            ImGui::RadioButton("Spyro 3 1.1", &gameChoice, 3); ImGui::SameLine();
+            HelpMarker(
+                "Spyro 3 has two versions, a 1.0 version, and a 1.1 version which is the Collector's Edition/Greatest Hits version. It's important to choose the right version as codes for one will not be compatiable with the other.");
+
+            if (ImGui::Button("Open Bizhawk Dump"))
+                fileDialog.Open();
+            ImGui::SameLine();
+            HelpMarker("This is where you open your Bizhawk Hex Dump. You create a dump by opening the Hex Editor in Bizhawk by clicking Tools -> Hex Editor. Then, once you are in the position you want to save in game, inside the Hex Editor you click File -> Save as Text...\nYou then open that file here.");
+
+        }
+
+
+        fileDialog.Display();
+
+        if (fileDialog.HasSelected())
+        {
+
+
+            txtFile = fileDialog.GetSelected().string();
+            strcpy_s(txtFileChar, 100, txtFile.c_str());
+            // std::cout << "Selected filename" << txtFile << std::endl;
+            fileDialog.Close();
+            fileOpened = true;
+        }
+
+
+        if (fileOpened == true)     //made it so rest of gui appears after opening file to avoid errors
+        {
+            if (hasCodeBeenCreated == false)      //here to remove this text once code button has been pressed
             {
-                ImGui::Text("Choose Game");
-
-                ImGui::RadioButton("Spyro 1", &gameChoice, 0); ImGui::SameLine();
-                ImGui::RadioButton("Spyro 2", &gameChoice, 1); ImGui::SameLine();
-                ImGui::RadioButton("Spyro 3 1.0", &gameChoice, 2); ImGui::SameLine();
-                ImGui::RadioButton("Spyro 3 1.1", &gameChoice, 3); ImGui::SameLine();
-                HelpMarker(
-                    "Spyro 3 has two versions, a 1.0 version, and a 1.1 version which is the Collector's Edition/Greatest Hits version. It's important to choose the right version as codes for one will not be compatiable with the other.");
-
-                if (ImGui::Button("Open Bizhawk Dump"))
-                    fileDialog.Open();
-                ImGui::SameLine();
-                HelpMarker("This is where you open your Bizhawk Hex Dump. You create a dump by opening the Hex Editor in Bizhawk by clicking Tools -> Hex Editor. Then, once you are in the position you want to save in game, inside the Hex Editor you click File -> Save as Text...\nYou then open that file here.");
-
+                ImGui::Text("File Opened Successfully!");
             }
-
-
-            fileDialog.Display();
-
-            if (fileDialog.HasSelected())
-            {
-
-                
-                txtFile = fileDialog.GetSelected().string();
-                strcpy_s(txtFileChar, 100, txtFile.c_str());
-               // std::cout << "Selected filename" << txtFile << std::endl;
-                fileDialog.Close();
-                fileOpened = true;
-            }
-
-
-            if (fileOpened == true)     //made it so rest of gui appears after opening file to avoid errors
-            {
-                if (hasCodeBeenCreated == false)      //here to remove this text once code button has been pressed
-                {
-                    ImGui::Text("File Opened Successfully!");
-                }
 
 
 
@@ -431,11 +440,78 @@ int main(int, char**)
                     ImGui::NewLine();
                 }
 
+                if (ImGui::TreeNode("Extras"))
+                {
+                    ImGui::NewLine;
+                    static bool sparxCheck = false;
+                    ImGui::Checkbox("Sprax Health Trigger", &sparxCheck);
+                    ImGui::SameLine();
+                    HelpMarker("This will instantly change Sparx's current health points/color."
+                        "You activate the code by inputting the button combination you chose above.");
+
+
+                    if (sparxCheck == false)
+                        publicSparxCheck = false;
+
+
+
+                    if (sparxCheck == true)
+                    {
+                        const char* sparxCombo[] = { "Yellow", "Blue", "Green", "No Sparx" };
+                        static int sparxComboCurrent = 0;
+                        ImGui::Combo("Color/Health", &sparxComboCurrent, sparxCombo, IM_ARRAYSIZE(sparxCombo));
+                        if (sparxComboCurrent == 0)
+                        {
+                            sparxHealthValue = "0003";
+                            publicSparxCheck = true;
+                        }
+                        if (sparxComboCurrent == 1)
+                        {
+                            sparxHealthValue = "0002";
+                            publicSparxCheck = true;
+                        }
+                        if (sparxComboCurrent == 2)
+                        {
+                            sparxHealthValue = "0001";
+                            publicSparxCheck = true;
+                        }
+                        if (sparxComboCurrent == 3)
+                        {
+                            sparxHealthValue = "0000";
+                            publicSparxCheck = true;
+                        }
+                    }
+
+                    ImGui::NewLine;
+                    static bool livesCheck = false;
+                    ImGui::Checkbox("Infinite Lives Code", &livesCheck);
+                    ImGui::SameLine();
+                    HelpMarker("This will keep Spyro's lives at 99 indefinitely");
+
+
+
+                    if (livesCheck == true)
+                    {
+                        publicLivesCheck = true;
+                    }
+
+                    if (livesCheck == false)
+                        publicLivesCheck = false;
+
+
+
+                    ImGui::TreePop();
+                }
+                ImGui::Text(" ");
+
+
             }
 
 
 
-            
+
+
+
             static int buttonClicked = 0;
 
 
@@ -460,12 +536,16 @@ int main(int, char**)
                 HelpMarker(
                     "This will generate a gameshark code to instantly teleport Spyro's position, angle, and camera to the postion you were in when you saved your Bizhawk dump. "
                     "You activate the code by inputting the button combination you chose above.");
+
+
+
+
             }
 
 
 
 
-            
+
 
             if (buttonClicked & 1)
             {
@@ -492,6 +572,8 @@ int main(int, char**)
                     camYaw4Address = "80076DFC ";
                     camYaw3Address = "80076DFE ";
                     jokerCommand = "D0077380 ";
+                    sparxHealthAddress = "80078BBC ";
+                    infiniteLivesCode = "8007582C 0099";
 
                     LINE = 30886;
                     LINE2 = 30887;
@@ -674,7 +756,14 @@ int main(int, char**)
                     gameSharkCodeL30 = camYaw1Address + lbcCamYaw1;
                     gameSharkCodeL32 = camYaw3Address + lbcCamYaw3;
                     gameSharkCodeL34 = camYaw4Address + lbcCamYaw4;
-
+                    if (publicSparxCheck == true)
+                    {
+                        gameSharkCodeL36 = sparxHealthAddress + sparxHealthValue;
+                    }
+                    if (publicLivesCheck == true)
+                    {
+                        gameSharkCodeL38 = infiniteLivesCode;
+                    }
 
 
 
@@ -697,7 +786,15 @@ int main(int, char**)
                     strcpy_s(gscCharL30, 15, gameSharkCodeL30.c_str());    // or pass &s[0]
                     strcpy_s(gscCharL32, 15, gameSharkCodeL32.c_str());    // or pass &s[0]
                     strcpy_s(gscCharL34, 15, gameSharkCodeL34.c_str());    // or pass &s[0]
+                    if (publicSparxCheck == true)
+                    {
+                        strcpy_s(gscCharL36, 15, gameSharkCodeL36.c_str());    // or pass &s[0]
+                    }
 
+                    if (publicLivesCheck == true)
+                    {
+                        strcpy_s(gscCharL38, 15, gameSharkCodeL38.c_str());    // or pass &s[0]
+                    }
 
 
 
@@ -769,8 +866,21 @@ int main(int, char**)
                     fullGamesharkCode += '\n';
                     fullGamesharkCode += gscCharL34;
                     fullGamesharkCode += '\n';
+                    if (publicSparxCheck == true)
+                    {
+                        fullGamesharkCode += gscCharJoker;
+                        fullGamesharkCode += '\n';
+                        fullGamesharkCode += gscCharL36;
+                        fullGamesharkCode += '\n';
+                    }
 
-                    strcpy_s(fullGamesharkCodeChar, 1000, fullGamesharkCode.c_str());                
+                    if (publicLivesCheck == true)
+                    {
+                        fullGamesharkCode += gscCharL38;
+                        fullGamesharkCode += '\n';
+                    }
+
+                    strcpy_s(fullGamesharkCodeChar, 1000, fullGamesharkCode.c_str());
 
                     gscCreated = true;
 
@@ -798,6 +908,9 @@ int main(int, char**)
                     camYaw2Address = "80067F28 ";
                     camYaw1Address = "80067F2A ";
                     jokerCommand = "D00683A0 ";
+                    sparxHealthAddress = "8006A248 ";
+                    infiniteLivesCode = "8006712C 0099";
+
 
                     LINE = 27136;   //only game where all spyros positions fit on one line, so may not follow exactly like other 2 games
                     LINE2 = 27142;
@@ -989,7 +1102,14 @@ int main(int, char**)
                     gameSharkCodeL26 = camZ1Address + lbcCamZ1;
                     gameSharkCodeL28 = camYaw2Address + lbcCamYaw2;
                     gameSharkCodeL30 = camYaw1Address + lbcCamYaw1;
-
+                    if (publicSparxCheck == true)
+                    {
+                        gameSharkCodeL32 = sparxHealthAddress + sparxHealthValue;
+                    }
+                    if (publicLivesCheck == true)
+                    {
+                        gameSharkCodeL34 = infiniteLivesCode;
+                    }
 
 
 
@@ -1010,8 +1130,14 @@ int main(int, char**)
                     strcpy_s(gscCharL26, 15, gameSharkCodeL26.c_str());    // or pass &s[0]
                     strcpy_s(gscCharL28, 15, gameSharkCodeL28.c_str());    // or pass &s[0]
                     strcpy_s(gscCharL30, 15, gameSharkCodeL30.c_str());    // or pass &s[0]
-
-
+                    if (publicSparxCheck == true)
+                    {
+                        strcpy_s(gscCharL32, 15, gameSharkCodeL32.c_str());    // or pass &s[0]
+                    }
+                    if (publicLivesCheck == true)
+                    {
+                        strcpy_s(gscCharL34, 15, gameSharkCodeL34.c_str());    // or pass &s[0]
+                    }
 
                     fullGamesharkCode += gscCharJoker;
                     fullGamesharkCode += '\n';
@@ -1073,10 +1199,22 @@ int main(int, char**)
                     fullGamesharkCode += '\n';
                     fullGamesharkCode += gscCharL30;
                     fullGamesharkCode += '\n';
+                    if (publicSparxCheck == true)
+                    {
+                        fullGamesharkCode += gscCharJoker;
+                        fullGamesharkCode += '\n';
+                        fullGamesharkCode += gscCharL32;
+                        fullGamesharkCode += '\n';
+                    }
 
+                    if (publicLivesCheck == true)
+                    {
+                        fullGamesharkCode += gscCharL34;
+                        fullGamesharkCode += '\n';
+                    }
 
                     strcpy_s(fullGamesharkCodeChar, 1000, fullGamesharkCode.c_str());
-               
+
                     gscCreated = true;
 
                     buttonClicked = 0;
@@ -1105,6 +1243,8 @@ int main(int, char**)
                     camYaw6Address = "8006E09C ";
                     camYaw5Address = "8006E09E ";
                     jokerCommand = "D006E538 ";
+                    sparxHealthAddress = "800705A8 ";
+                    infiniteLivesCode = "8006C784 0099";
 
                     LINE = 102480;
                     LINE2 = 102481;
@@ -1114,7 +1254,7 @@ int main(int, char**)
                     LINE6 = 28168;
                     LINE7 = 28170;  //LEFT OF HERE //LEFT OF HERE//LEFT OF HERE//LEFT OF HERE//LEFT OF HERE//LEFT OF HERE//LEFT OF HERE//LEFT OF HERE
 
-                   
+
 
                     for (int i = 1; i <= LINE; i++)
                         std::getline(f1, myData);
@@ -1322,7 +1462,15 @@ int main(int, char**)
                     gameSharkCodeL34 = camYaw3Address + lbcCamYaw3;
                     gameSharkCodeL36 = camYaw6Address + lbcCamYaw6;
                     gameSharkCodeL38 = camYaw5Address + lbcCamYaw5;
+                    if (publicSparxCheck == true)
+                    {
+                        gameSharkCodeL40 = sparxHealthAddress + sparxHealthValue;
+                    }
 
+                    if (publicLivesCheck == true)
+                    {
+                        gameSharkCodeL42 = infiniteLivesCode;
+                    }
 
 
 
@@ -1347,7 +1495,14 @@ int main(int, char**)
                     strcpy_s(gscCharL34, 15, gameSharkCodeL34.c_str());
                     strcpy_s(gscCharL36, 15, gameSharkCodeL36.c_str());
                     strcpy_s(gscCharL38, 15, gameSharkCodeL38.c_str());
-
+                    if (publicSparxCheck == true)
+                    {
+                        strcpy_s(gscCharL40, 15, gameSharkCodeL40.c_str());
+                    }
+                    if (publicLivesCheck == true)
+                    {
+                        strcpy_s(gscCharL42, 15, gameSharkCodeL42.c_str());
+                    }
 
 
                     fullGamesharkCode += gscCharJoker;
@@ -1426,11 +1581,23 @@ int main(int, char**)
                     fullGamesharkCode += '\n';
                     fullGamesharkCode += gscCharL38;
                     fullGamesharkCode += '\n';
+                    if (publicSparxCheck == true)
+                    {
+                        fullGamesharkCode += gscCharJoker;
+                        fullGamesharkCode += '\n';
+                        fullGamesharkCode += gscCharL40;
+                        fullGamesharkCode += '\n';
+                    }
+                    if (publicLivesCheck == true)
+                    {
+                        fullGamesharkCode += gscCharL42;
+                        fullGamesharkCode += '\n';
+                    }
 
 
                     strcpy_s(fullGamesharkCodeChar, 1000, fullGamesharkCode.c_str());
 
-                   //std::cout << fullGamesharkCode;
+                    //std::cout << fullGamesharkCode;
 
 
                     gscCreated = true;
@@ -1465,6 +1632,9 @@ int main(int, char**)
                     camYaw6Address = "8006E17C ";
                     camYaw5Address = "8006E17E ";
                     jokerCommand = "D006E618 ";
+                    sparxHealthAddress = "80070688 ";
+                    infiniteLivesCode = "8006C864 0099";
+
 
                     LINE = 102494;
                     LINE2 = 102495;
@@ -1682,9 +1852,11 @@ int main(int, char**)
                     gameSharkCodeL34 = camYaw3Address + lbcCamYaw3;
                     gameSharkCodeL36 = camYaw6Address + lbcCamYaw6;
                     gameSharkCodeL38 = camYaw5Address + lbcCamYaw5;
+                    if (publicSparxCheck == true)
+                        gameSharkCodeL40 = sparxHealthAddress + sparxHealthValue;
 
-
-
+                    if (publicLivesCheck == true)
+                        gameSharkCodeL42 = infiniteLivesCode;
 
 
                     strcpy_s(gscCharJoker, gameSharkCodeJoker.c_str());
@@ -1707,7 +1879,13 @@ int main(int, char**)
                     strcpy_s(gscCharL34, 15, gameSharkCodeL34.c_str());
                     strcpy_s(gscCharL36, 15, gameSharkCodeL36.c_str());
                     strcpy_s(gscCharL38, 15, gameSharkCodeL38.c_str());
+                    if (publicSparxCheck == true)
+                    {
+                        strcpy_s(gscCharL40, 15, gameSharkCodeL40.c_str());
+                    }
 
+                    if (publicLivesCheck == true)
+                        strcpy_s(gscCharL42, 15, gameSharkCodeL42.c_str());
 
 
                     fullGamesharkCode += gscCharJoker;
@@ -1786,7 +1964,19 @@ int main(int, char**)
                     fullGamesharkCode += '\n';
                     fullGamesharkCode += gscCharL38;
                     fullGamesharkCode += '\n';
+                    if (publicSparxCheck == true)
+                    {
+                        fullGamesharkCode += gscCharJoker;
+                        fullGamesharkCode += '\n';
+                        fullGamesharkCode += gscCharL40;
+                        fullGamesharkCode += '\n';
+                    }
 
+                    if (publicLivesCheck == true)
+                    {
+                        fullGamesharkCode += gscCharL42;
+                        fullGamesharkCode += '\n';
+                    }
 
                     strcpy_s(fullGamesharkCodeChar, fullGamesharkCode.c_str());
 
@@ -1842,8 +2032,22 @@ int main(int, char**)
                 ImGui::PopID();
                 ImGui::SameLine();
                 HelpMarker(
-                    "This will generate a gameshark code that will instantly kill, then respawn Spyro at the postion you were in when you saved your bizhawk dump. "
+                    "This will generate a gameshark code that will instantly kill, then respawn Spyro at the postion you were in when you saved your bizhawk dump."
                     "You activate the code by inputting the button combination you chose above.");
+                ImGui::NewLine;
+
+
+
+
+
+
+
+
+
+
+
+
+
             }
 
 
@@ -1864,6 +2068,7 @@ int main(int, char**)
                     spyroRespawnL4 = "80077888 0001";
                     spyroRespawnL6 = "800757D8 0004";
                     jokerCommand = "D0077380 ";
+                    infiniteLivesCode = "8007582C 0099";
 
                     LINE = 30886;
                     LINE2 = 30887;
@@ -1876,7 +2081,7 @@ int main(int, char**)
                         std::getline(f1, myData);
                     for (int i = 1; i <= LINE2; i++)
                         std::getline(f2, myData2);
-        
+
 
 
 
@@ -1963,6 +2168,10 @@ int main(int, char**)
                     gameSharkCodeL14 = spyroRespawnL2;
                     gameSharkCodeL16 = spyroRespawnL4;
                     gameSharkCodeL18 = spyroRespawnL6;
+                    if (publicLivesCheck == true)
+                    {
+                        gameSharkCodeL20 = infiniteLivesCode;
+                    }
 
 
 
@@ -1978,6 +2187,8 @@ int main(int, char**)
                     strcpy_s(gscCharL14, 15, gameSharkCodeL14.c_str());    // or pass &s[0]
                     strcpy_s(gscCharL16, 15, gameSharkCodeL16.c_str());    // or pass &s[0]
                     strcpy_s(gscCharL18, 15, gameSharkCodeL18.c_str());    // or pass &s[0]
+                    if (publicLivesCheck == true)
+                        strcpy_s(gscCharL20, 15, gameSharkCodeL20.c_str());    // or pass &s[0]
 
 
 
@@ -2019,6 +2230,12 @@ int main(int, char**)
                     fullGamesharkCode += '\n';
                     fullGamesharkCode += gscCharL18;
                     fullGamesharkCode += '\n';
+                    if (publicLivesCheck == true)
+                    {
+                        fullGamesharkCode += gscCharL20;
+                        fullGamesharkCode += '\n';
+                    }
+
 
 
 
@@ -2054,6 +2271,8 @@ int main(int, char**)
                     spyroRespawnL4 = "800698F0 0000";
                     spyroRespawnL6 = "800681C8 0003";
                     jokerCommand = "D00683A0 ";
+                    infiniteLivesCode = "8006712C 0099";
+
 
                     LINE = 27136;   // RESPAWN LOCATION LINES, NOT SPYRO POSITION
 
@@ -2182,6 +2401,8 @@ int main(int, char**)
                     gameSharkCodeL14 = spyroRespawnL2;
                     gameSharkCodeL16 = spyroRespawnL4;
                     gameSharkCodeL18 = spyroRespawnL6;
+                    if (publicLivesCheck == true)
+                        gameSharkCodeL20 = infiniteLivesCode;
 
 
 
@@ -2197,6 +2418,8 @@ int main(int, char**)
                     strcpy_s(gscCharL14, 15, gameSharkCodeL14.c_str());    // or pass &s[0]
                     strcpy_s(gscCharL16, 15, gameSharkCodeL16.c_str());    // or pass &s[0]
                     strcpy_s(gscCharL18, 15, gameSharkCodeL18.c_str());    // or pass &s[0]
+                    if (publicLivesCheck == true)
+                        strcpy_s(gscCharL20, 15, gameSharkCodeL20.c_str());    // or pass &s[0]
 
 
 
@@ -2237,6 +2460,11 @@ int main(int, char**)
                     fullGamesharkCode += '\n';
                     fullGamesharkCode += gscCharL18;
                     fullGamesharkCode += '\n';
+                    if (publicLivesCheck == true)
+                    {
+                        fullGamesharkCode += gscCharL20;
+                        fullGamesharkCode += '\n';
+                    }
 
 
 
@@ -2258,8 +2486,10 @@ int main(int, char**)
                     spyroZ1Address = "8006D0B6 ";
                     spyroRespawnL2 = "8006C598 0000";
                     spyroRespawnL4 = "8006FBC8 0000";
-                    spyroRespawnL6 = "8006E344 0003";           
+                    spyroRespawnL6 = "8006E344 0003";
                     jokerCommand = "D006E538 ";
+                    infiniteLivesCode = "8006C784 0099";
+
 
                     LINE = 102480;
                     LINE2 = 102481;
@@ -2385,6 +2615,8 @@ int main(int, char**)
                     gameSharkCodeL14 = spyroRespawnL2;
                     gameSharkCodeL16 = spyroRespawnL4;
                     gameSharkCodeL18 = spyroRespawnL6;
+                    if (publicLivesCheck == true)
+                        gameSharkCodeL20 = infiniteLivesCode;
 
 
 
@@ -2400,7 +2632,10 @@ int main(int, char**)
                     strcpy_s(gscCharL14, 15, gameSharkCodeL14.c_str());
                     strcpy_s(gscCharL16, 15, gameSharkCodeL16.c_str());
                     strcpy_s(gscCharL18, 15, gameSharkCodeL18.c_str());
-
+                    if (publicLivesCheck == true)
+                    {
+                        strcpy_s(gscCharL18, 15, gameSharkCodeL18.c_str());
+                    }
 
 
 
@@ -2440,6 +2675,11 @@ int main(int, char**)
                     fullGamesharkCode += '\n';
                     fullGamesharkCode += gscCharL18;
                     fullGamesharkCode += '\n';
+                    if (publicLivesCheck == true)
+                    {
+                        fullGamesharkCode += gscCharL18;
+                        fullGamesharkCode += '\n';
+                    }
 
 
 
@@ -2478,6 +2718,9 @@ int main(int, char**)
                     spyroRespawnL4 = "8006FCA8 0000";
                     spyroRespawnL6 = "8006E424 0003";
                     jokerCommand = "D006E618 ";
+                    infiniteLivesCode = "8006C864 0099";
+
+
 
                     LINE = 102494;
                     LINE2 = 102495;
@@ -2603,6 +2846,8 @@ int main(int, char**)
                     gameSharkCodeL14 = spyroRespawnL2;
                     gameSharkCodeL16 = spyroRespawnL4;
                     gameSharkCodeL18 = spyroRespawnL6;
+                    if (publicLivesCheck == true)
+                        gameSharkCodeL20 = infiniteLivesCode;
 
 
 
@@ -2618,7 +2863,8 @@ int main(int, char**)
                     strcpy_s(gscCharL14, 15, gameSharkCodeL14.c_str());
                     strcpy_s(gscCharL16, 15, gameSharkCodeL16.c_str());
                     strcpy_s(gscCharL18, 15, gameSharkCodeL18.c_str());
-
+                    if (publicLivesCheck == true)
+                        strcpy_s(gscCharL20, 15, gameSharkCodeL20.c_str());
 
 
 
@@ -2658,6 +2904,11 @@ int main(int, char**)
                     fullGamesharkCode += '\n';
                     fullGamesharkCode += gscCharL18;
                     fullGamesharkCode += '\n';
+                    if (publicLivesCheck == true)
+                    {
+                        fullGamesharkCode += gscCharL20;
+                        fullGamesharkCode += '\n';
+                    }
 
 
 
@@ -2687,92 +2938,100 @@ int main(int, char**)
 
 
 
-                            ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "Code Generated!");
-                            ImGui::Text(gscCharJoker);
-                            ImGui::Text(gscCharL2);
-                            ImGui::Text(gscCharJoker);
-                            ImGui::Text(gscCharL4);
-                            ImGui::Text(gscCharJoker);
-                            ImGui::Text(gscCharL6);
-                            ImGui::Text(gscCharJoker);
-                            ImGui::Text(gscCharL8);
-                            ImGui::Text(gscCharJoker);
-                            ImGui::Text(gscCharL10);
-                            ImGui::Text(gscCharJoker);
-                            ImGui::Text(gscCharL12);
-                            ImGui::Text(gscCharJoker);
-                            ImGui::Text(gscCharL14);
-                            ImGui::Text(gscCharJoker);
-                            ImGui::Text(gscCharL16);
-                            ImGui::Text(gscCharJoker);
-                            ImGui::Text(gscCharL18);
-                            ImGui::Text(gscCharJoker);
-                            ImGui::Text(gscCharL20);
-                            ImGui::Text(gscCharJoker);
-                            ImGui::Text(gscCharL22);
-                            ImGui::Text(gscCharJoker);
-                            ImGui::Text(gscCharL24);
-                            ImGui::Text(gscCharJoker);
-                            ImGui::Text(gscCharL26);
-                            ImGui::Text(gscCharJoker);
-                            ImGui::Text(gscCharL28);
-                            ImGui::Text(gscCharJoker);
-                            ImGui::Text(gscCharL30);
-                            ImGui::Text(gscCharJoker);
-                            ImGui::Text(gscCharL32);
-                            ImGui::Text(gscCharJoker);
-                            ImGui::Text(gscCharL34);
+                ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "Code Generated!");
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL2);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL4);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL6);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL8);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL10);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL12);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL14);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL16);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL18);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL20);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL22);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL24);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL26);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL28);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL30);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL32);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL34);
+                if (publicSparxCheck == true)
+                {
+                    ImGui::Text(gscCharJoker);
+                    ImGui::Text(gscCharL36);
+                }
+
+                if (publicLivesCheck == true)
+                {
+                    ImGui::Text(gscCharL38);
+                }
+
+
+                static int copyClicked = 0;
+
+
+                for (int i = 0; i < 1; i++)
+                {
+                    if (i > 0)
+                        ImGui::SameLine();
+                    ImGui::PushID(i);
+                    ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(6 / 7.0f, 0.6f, 0.6f));
+                    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4)ImColor::HSV(6 / 7.0f, 0.7f, 0.7f));
+                    ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4)ImColor::HSV(6 / 7.0f, 0.8f, 0.8f));
+                    if (ImGui::Button("Copy to Clipboard"))
+                        copyClicked++;
+                    if (copyClicked & 1)
+                    {
+                        ImGui::SetClipboardText(fullGamesharkCodeChar);
+                        copyClicked = 0;
+                    }
+                    ImGui::PopStyleColor(3);
+                    ImGui::PopID();
+                }
 
 
 
-                            
-                            static int copyClicked = 0;
+                static int resetClicked = 0;
 
-
-                            for (int i = 0; i < 1; i++)
-                            {
-                                if (i > 0)
-                                    ImGui::SameLine();
-                                ImGui::PushID(i);
-                                ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(6 / 7.0f, 0.6f, 0.6f));
-                                ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4)ImColor::HSV(6 / 7.0f, 0.7f, 0.7f));
-                                ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4)ImColor::HSV(6 / 7.0f, 0.8f, 0.8f));
-                                if (ImGui::Button("Copy to Clipboard"))
-                                    copyClicked++;
-                                if (copyClicked & 1)
-                                {
-                                    ImGui::SetClipboardText(fullGamesharkCodeChar);
-                                    copyClicked = 0;
-                                }
-                                ImGui::PopStyleColor(3);
-                                ImGui::PopID();
-                            }
-
-
-
-                            static int resetClicked = 0;
-
-                            for (int i = 0; i < 1; i++)
-                            {
-                                if (i > 0)
-                                    ImGui::SameLine();
-                                ImGui::PushID(i);
-                                ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(7 / 7.0f, 0.6f, 0.6f));
-                                ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4)ImColor::HSV(7 / 7.0f, 0.7f, 0.7f));
-                                ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4)ImColor::HSV(7 / 7.0f, 0.8f, 0.8f));
-                                ImGui::SameLine();
-                                if (ImGui::Button("Reset"))
-                                    resetClicked++;
-                                if (resetClicked & 1)
-                                {
-                                    resetClicked = 0;
-                                    fileOpened = false;
-                                    hasButtonBeenPressed = false;
-                                    hasCodeBeenCreated = false;
-                                }
-                                ImGui::PopStyleColor(3);
-                                ImGui::PopID();
-                            }
+                for (int i = 0; i < 1; i++)
+                {
+                    if (i > 0)
+                        ImGui::SameLine();
+                    ImGui::PushID(i);
+                    ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(7 / 7.0f, 0.6f, 0.6f));
+                    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4)ImColor::HSV(7 / 7.0f, 0.7f, 0.7f));
+                    ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4)ImColor::HSV(7 / 7.0f, 0.8f, 0.8f));
+                    ImGui::SameLine();
+                    if (ImGui::Button("Reset"))
+                        resetClicked++;
+                    if (resetClicked & 1)
+                    {
+                        resetClicked = 0;
+                        fileOpened = false;
+                        hasButtonBeenPressed = false;
+                        hasCodeBeenCreated = false;
+                    }
+                    ImGui::PopStyleColor(3);
+                    ImGui::PopID();
+                }
 
 
 
@@ -2815,6 +3074,18 @@ int main(int, char**)
                 ImGui::Text(gscCharJoker);
                 ImGui::Text(gscCharL30);
 
+
+                if (publicSparxCheck == true)
+                {
+                    ImGui::Text(gscCharJoker);
+                    ImGui::Text(gscCharL32);
+                }
+                if (publicLivesCheck == true)
+                {
+                    ImGui::Text(gscCharL34);
+                }
+
+                std::cout << sparxHealthValue;
                 static int copyClicked = 0;
 
 
@@ -2873,7 +3144,7 @@ int main(int, char**)
             }
 
 
-            if (hasButtonBeenPressed == true && gameChoice == 2 || hasButtonBeenPressed == true && gameChoice == 3)    //spliting up output bcuz spyro 1 has 2 more lines for extra camera values
+            if (hasButtonBeenPressed == true && gameChoice == 2)    //spliting up output bcuz spyro 1 has 2 more lines for extra camera values
             {
 
 
@@ -2917,6 +3188,15 @@ int main(int, char**)
                 ImGui::Text(gscCharL36);
                 ImGui::Text(gscCharJoker);
                 ImGui::Text(gscCharL38);
+                if (publicSparxCheck == true)
+                {
+                    ImGui::Text(gscCharJoker);
+                    ImGui::Text(gscCharL40);
+                }
+                if (publicLivesCheck == true)
+                {
+                    ImGui::Text(gscCharL42);
+                }
 
                 static int copyClicked = 0;
 
@@ -2972,6 +3252,119 @@ int main(int, char**)
 
             }
 
+
+
+
+
+
+            if (hasButtonBeenPressed == true && gameChoice == 3)    //spliting up output bcuz spyro 1 has 2 more lines for extra camera values
+            {
+
+
+
+                ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "Code Generated!");
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL2);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL4);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL6);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL8);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL10);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL12);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL14);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL16);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL18);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL20);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL22);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL24);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL26);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL28);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL30);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL32);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL34);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL36);
+                ImGui::Text(gscCharJoker);
+                ImGui::Text(gscCharL38);
+                if (publicSparxCheck == true)
+                {
+                    ImGui::Text(gscCharJoker);
+                    ImGui::Text(gscCharL40);
+                }
+
+                if (publicLivesCheck == true)
+                {
+                    ImGui::Text(gscCharL42);
+                }
+
+                static int copyClicked = 0;
+
+                for (int i = 0; i < 1; i++)
+                {
+                    if (i > 0)
+                        ImGui::SameLine();
+                    ImGui::PushID(i);
+                    ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(6 / 7.0f, 0.6f, 0.6f));
+                    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4)ImColor::HSV(6 / 7.0f, 0.7f, 0.7f));
+                    ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4)ImColor::HSV(6 / 7.0f, 0.8f, 0.8f));
+                    if (ImGui::Button("Copy to Clipboard"))
+                        copyClicked++;
+                    if (copyClicked & 1)
+                    {
+                        ImGui::SetClipboardText(fullGamesharkCodeChar);
+                        copyClicked = 0;
+                    }
+                    ImGui::PopStyleColor(3);
+                    ImGui::PopID();
+                }
+
+
+
+
+
+
+
+                static int resetClicked = 0;
+
+                for (int i = 0; i < 1; i++)
+                {
+                    if (i > 0)
+                        ImGui::SameLine();
+                    ImGui::PushID(i);
+                    ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(7 / 7.0f, 0.6f, 0.6f));
+                    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4)ImColor::HSV(7 / 7.0f, 0.7f, 0.7f));
+                    ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4)ImColor::HSV(7 / 7.0f, 0.8f, 0.8f));
+                    ImGui::SameLine();
+                    if (ImGui::Button("Reset"))
+                        resetClicked++;
+                    if (resetClicked & 1)
+                    {
+                        resetClicked = 0;
+                        fileOpened = false;
+                        hasButtonBeenPressed = false;
+                        hasCodeBeenCreated = false;
+                    }
+                    ImGui::PopStyleColor(3);
+                    ImGui::PopID();
+                }
+
+
+            }
 
 
 
@@ -3016,7 +3409,10 @@ int main(int, char**)
                 ImGui::Text(gscCharL16);
                 ImGui::Text(gscCharJoker);
                 ImGui::Text(gscCharL18);
-
+                if (publicLivesCheck == true)
+                {
+                    ImGui::Text(gscCharL20);
+                }
 
                 static int copyClicked = 0;
 
@@ -3097,6 +3493,10 @@ int main(int, char**)
                 ImGui::Text(gscCharL16);
                 ImGui::Text(gscCharJoker);
                 ImGui::Text(gscCharL18);
+                if (publicLivesCheck == true)
+                {
+                    ImGui::Text(gscCharL20);
+                }
 
 
 
@@ -3165,44 +3565,44 @@ int main(int, char**)
 
 
 
-            }
-
-                ImGui::End();
-
-
-
-
-
-            // Rendering
-            ImGui::EndFrame();
-            g_pd3dDevice->SetRenderState(D3DRS_ZENABLE, FALSE);
-            g_pd3dDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
-            g_pd3dDevice->SetRenderState(D3DRS_SCISSORTESTENABLE, FALSE);
-            D3DCOLOR clear_col_dx = D3DCOLOR_RGBA((int)(clear_color.x * clear_color.w * 255.0f), (int)(clear_color.y * clear_color.w * 255.0f), (int)(clear_color.z * clear_color.w * 255.0f), (int)(clear_color.w * 255.0f));
-            g_pd3dDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, clear_col_dx, 1.0f, 0);
-            if (g_pd3dDevice->BeginScene() >= 0)
-            {
-                ImGui::Render();
-                ImGui_ImplDX9_RenderDrawData(ImGui::GetDrawData());
-                g_pd3dDevice->EndScene();
-            }
-            HRESULT result = g_pd3dDevice->Present(NULL, NULL, NULL, NULL);
-
-            // Handle loss of D3D9 device
-            if (result == D3DERR_DEVICELOST && g_pd3dDevice->TestCooperativeLevel() == D3DERR_DEVICENOTRESET)
-                ResetDevice();
         }
 
-        ImGui_ImplDX9_Shutdown();
-        ImGui_ImplWin32_Shutdown();
-        ImGui::DestroyContext();
+        ImGui::End();
 
-        CleanupDeviceD3D();
-        ::DestroyWindow(hwnd);
-        ::UnregisterClass(wc.lpszClassName, wc.hInstance);
 
-        return 0;
+
+
+
+        // Rendering
+        ImGui::EndFrame();
+        g_pd3dDevice->SetRenderState(D3DRS_ZENABLE, FALSE);
+        g_pd3dDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
+        g_pd3dDevice->SetRenderState(D3DRS_SCISSORTESTENABLE, FALSE);
+        D3DCOLOR clear_col_dx = D3DCOLOR_RGBA((int)(clear_color.x * clear_color.w * 255.0f), (int)(clear_color.y * clear_color.w * 255.0f), (int)(clear_color.z * clear_color.w * 255.0f), (int)(clear_color.w * 255.0f));
+        g_pd3dDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, clear_col_dx, 1.0f, 0);
+        if (g_pd3dDevice->BeginScene() >= 0)
+        {
+            ImGui::Render();
+            ImGui_ImplDX9_RenderDrawData(ImGui::GetDrawData());
+            g_pd3dDevice->EndScene();
+        }
+        HRESULT result = g_pd3dDevice->Present(NULL, NULL, NULL, NULL);
+
+        // Handle loss of D3D9 device
+        if (result == D3DERR_DEVICELOST && g_pd3dDevice->TestCooperativeLevel() == D3DERR_DEVICENOTRESET)
+            ResetDevice();
     }
+
+    ImGui_ImplDX9_Shutdown();
+    ImGui_ImplWin32_Shutdown();
+    ImGui::DestroyContext();
+
+    CleanupDeviceD3D();
+    ::DestroyWindow(hwnd);
+    ::UnregisterClass(wc.lpszClassName, wc.hInstance);
+
+    return 0;
+}
 
 // Helper functions
 

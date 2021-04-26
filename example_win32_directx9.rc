@@ -50,7 +50,7 @@ END
 // PNG
 //
 
-IDB_PNG1                PNG                     "C:\\Users\\aaron\\Documents\\File Icom.png"
+//IDB_PNG1                PNG                     "//icon file here"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@ IDB_PNG1                PNG                     "C:\\Users\\aaron\\Documents\\Fi
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_ICON1               ICON                    "C:\\Users\\aaron\\source\\repos\\imgui\\examples\\example_win32_directx9\\myicon.ico"
+//IDI_ICON1               ICON                    "//icon file here"
 
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
