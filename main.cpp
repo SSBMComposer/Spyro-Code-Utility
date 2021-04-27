@@ -343,6 +343,9 @@ int main(int, char**)
 
         static bool publicSparxCheck = false;
         static bool publicLivesCheck = false;
+        static bool publicPopstarterCheck = false;
+
+
 
         std::string txtFile;
         char txtFileChar[100];
@@ -505,6 +508,29 @@ int main(int, char**)
                 ImGui::Text(" ");
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             }
 
 
@@ -544,9 +570,6 @@ int main(int, char**)
 
 
 
-
-
-
             if (buttonClicked & 1)
             {
                 hasButtonBeenPressed = true;
@@ -554,26 +577,62 @@ int main(int, char**)
                 if (gameChoice == 0)
                 {
 
-                    spyroX2Address = "80078A58 ";    //BACKWARDS CUZ BYTES 
-                    spyroX1Address = "80078A5A ";
-                    spyroY2Address = "80078A5C ";
-                    spyroY1Address = "80078A5E ";
-                    spyroZ2Address = "80078A60 ";
-                    spyroZ1Address = "80078A62 ";
-                    spyroAngleAddress = "80078B74 ";
-                    camX2Address = "80076DD0 ";
-                    camX1Address = "80076DD2 ";
-                    camY2Address = "80076DD8 ";
-                    camY1Address = "80076DDA ";
-                    camZ2Address = "80076DE0 ";
-                    camZ1Address = "80076DE2 ";
-                    camYaw2Address = "80076DF8 ";
-                    camYaw1Address = "80076DFA ";
-                    camYaw4Address = "80076DFC ";
-                    camYaw3Address = "80076DFE ";
-                    jokerCommand = "D0077380 ";
-                    sparxHealthAddress = "80078BBC ";
-                    infiniteLivesCode = "8007582C 0099";
+                    
+                    if (publicPopstarterCheck == true)
+                    {
+
+
+                        spyroX2Address = "$80078A58 ";    //BACKWARDS CUZ BYTES 
+                        spyroX1Address = "$80078A5A ";
+                        spyroY2Address = "$80078A5C ";
+                        spyroY1Address = "$80078A5E ";
+                        spyroZ2Address = "$80078A60 ";
+                        spyroZ1Address = "$80078A62 ";
+                        spyroAngleAddress = "$80078B74 ";
+                        camX2Address = "$80076DD0 ";
+                        camX1Address = "$80076DD2 ";
+                        camY2Address = "$80076DD8 ";
+                        camY1Address = "$80076DDA ";
+                        camZ2Address = "$80076DE0 ";
+                        camZ1Address = "$80076DE2 ";
+                        camYaw2Address = "$80076DF8 ";
+                        camYaw1Address = "$80076DFA ";
+                        camYaw4Address = "$80076DFC ";
+                        camYaw3Address = "$80076DFE ";
+                        jokerCommand = "$D0077380 ";
+                        sparxHealthAddress = "$80078BBC ";
+                        infiniteLivesCode = "$8007582C 0099";
+
+                    }
+
+                    if (publicPopstarterCheck == false)
+
+                    {
+                        spyroX2Address = "80078A58 ";    //BACKWARDS CUZ BYTES 
+                        spyroX1Address = "80078A5A ";
+                        spyroY2Address = "80078A5C ";
+                        spyroY1Address = "80078A5E ";
+                        spyroZ2Address = "80078A60 ";
+                        spyroZ1Address = "80078A62 ";
+                        spyroAngleAddress = "80078B74 ";
+                        camX2Address = "80076DD0 ";
+                        camX1Address = "80076DD2 ";
+                        camY2Address = "80076DD8 ";
+                        camY1Address = "80076DDA ";
+                        camZ2Address = "80076DE0 ";
+                        camZ1Address = "80076DE2 ";
+                        camYaw2Address = "80076DF8 ";
+                        camYaw1Address = "80076DFA ";
+                        camYaw4Address = "80076DFC ";
+                        camYaw3Address = "80076DFE ";
+                        jokerCommand = "D0077380 ";
+                        sparxHealthAddress = "80078BBC ";
+                        infiniteLivesCode = "8007582C 0099";
+                    }
+
+
+
+
 
                     LINE = 30886;
                     LINE2 = 30887;
@@ -892,24 +951,52 @@ int main(int, char**)
                 if (gameChoice == 1)
                 {
 
-                    spyroX2Address = "80069FF0 ";    //BACKWARDS CUZ BYTES LOLOLOL
-                    spyroX1Address = "80069FF2 ";
-                    spyroY2Address = "80069FF4 ";
-                    spyroY1Address = "80069FF6 ";
-                    spyroZ2Address = "80069FF8 ";
-                    spyroZ1Address = "80069FFA ";
-                    spyroAngleAddress = "8006A05C ";
-                    camX2Address = "80067EAC ";
-                    camX1Address = "80067EAE ";
-                    camY2Address = "80067EB0 ";
-                    camY1Address = "80067EB2 ";
-                    camZ2Address = "80067EB4 ";
-                    camZ1Address = "80067EB6 ";
-                    camYaw2Address = "80067F28 ";
-                    camYaw1Address = "80067F2A ";
-                    jokerCommand = "D00683A0 ";
-                    sparxHealthAddress = "8006A248 ";
-                    infiniteLivesCode = "8006712C 0099";
+                    if (publicPopstarterCheck == true)
+                    {
+
+
+                        spyroX2Address = "$80069FF0 ";    //BACKWARDS CUZ BYTES LOLOLOL
+                        spyroX1Address = "$80069FF2 ";
+                        spyroY2Address = "$80069FF4 ";
+                        spyroY1Address = "$80069FF6 ";
+                        spyroZ2Address = "$80069FF8 ";
+                        spyroZ1Address = "$80069FFA ";
+                        spyroAngleAddress = "$8006A05C ";
+                        camX2Address = "$80067EAC ";
+                        camX1Address = "$80067EAE ";
+                        camY2Address = "$80067EB0 ";
+                        camY1Address = "$80067EB2 ";
+                        camZ2Address = "$80067EB4 ";
+                        camZ1Address = "$80067EB6 ";
+                        camYaw2Address = "$80067F28 ";
+                        camYaw1Address = "$80067F2A ";
+                        jokerCommand = "$D00683A0 ";
+                        sparxHealthAddress = "$8006A248 ";
+                        infiniteLivesCode = "$8006712C 0099";
+
+                    }
+
+                    if (publicPopstarterCheck == false)
+                    {
+                        spyroX2Address = "80069FF0 ";    //BACKWARDS CUZ BYTES LOLOLOL
+                        spyroX1Address = "80069FF2 ";
+                        spyroY2Address = "80069FF4 ";
+                        spyroY1Address = "80069FF6 ";
+                        spyroZ2Address = "80069FF8 ";
+                        spyroZ1Address = "80069FFA ";
+                        spyroAngleAddress = "8006A05C ";
+                        camX2Address = "80067EAC ";
+                        camX1Address = "80067EAE ";
+                        camY2Address = "80067EB0 ";
+                        camY1Address = "80067EB2 ";
+                        camZ2Address = "80067EB4 ";
+                        camZ1Address = "80067EB6 ";
+                        camYaw2Address = "80067F28 ";
+                        camYaw1Address = "80067F2A ";
+                        jokerCommand = "D00683A0 ";
+                        sparxHealthAddress = "8006A248 ";
+                        infiniteLivesCode = "8006712C 0099";
+                    }
 
 
                     LINE = 27136;   //only game where all spyros positions fit on one line, so may not follow exactly like other 2 games
@@ -1223,28 +1310,59 @@ int main(int, char**)
 
                 if (gameChoice == 2)
                 {
-                    spyroX2Address = "80070328 ";    //BACKWARDS CUZ BYTES LOLOLOL
-                    spyroX1Address = "8007032A ";
-                    spyroY2Address = "8007032C ";
-                    spyroY1Address = "8007032E ";
-                    spyroZ2Address = "80070330 ";
-                    spyroZ1Address = "80070332 ";
-                    spyroAngleAddress = "8007038C ";
-                    camX2Address = "8006E020 ";
-                    camX1Address = "8006E122 ";
-                    camY2Address = "8006E124 ";
-                    camY1Address = "8006E126 ";
-                    camZ2Address = "8006E128 ";
-                    camZ1Address = "8006E12A ";
-                    camYaw2Address = "8006E040 ";
-                    camYaw1Address = "8006E042 ";
-                    camYaw4Address = "8006E074 ";
-                    camYaw3Address = "8006E076 ";
-                    camYaw6Address = "8006E09C ";
-                    camYaw5Address = "8006E09E ";
-                    jokerCommand = "D006E538 ";
-                    sparxHealthAddress = "800705A8 ";
-                    infiniteLivesCode = "8006C784 0099";
+                    
+                    if (publicPopstarterCheck == true)
+                    {
+
+                        spyroX2Address = "$80070328 ";    //BACKWARDS CUZ BYTES LOLOLOL
+                        spyroX1Address = "$8007032A ";
+                        spyroY2Address = "$8007032C ";
+                        spyroY1Address = "$8007032E ";
+                        spyroZ2Address = "$80070330 ";
+                        spyroZ1Address = "$80070332 ";
+                        spyroAngleAddress = "$8007038C ";
+                        camX2Address = "$8006E020 ";
+                        camX1Address = "$8006E122 ";
+                        camY2Address = "$8006E124 ";
+                        camY1Address = "$8006E126 ";
+                        camZ2Address = "$8006E128 ";
+                        camZ1Address = "$8006E12A ";
+                        camYaw2Address = "$8006E040 ";
+                        camYaw1Address = "$8006E042 ";
+                        camYaw4Address = "$8006E074 ";
+                        camYaw3Address = "$8006E076 ";
+                        camYaw6Address = "$8006E09C ";
+                        camYaw5Address = "$8006E09E ";
+                        jokerCommand = "$D006E538 ";
+                        sparxHealthAddress = "$800705A8 ";
+                        infiniteLivesCode = "$8006C784 0099";
+                    }
+
+                    if (publicPopstarterCheck == false)
+                    {
+                        spyroX2Address = "80070328 ";    //BACKWARDS CUZ BYTES LOLOLOL
+                        spyroX1Address = "8007032A ";
+                        spyroY2Address = "8007032C ";
+                        spyroY1Address = "8007032E ";
+                        spyroZ2Address = "80070330 ";
+                        spyroZ1Address = "80070332 ";
+                        spyroAngleAddress = "8007038C ";
+                        camX2Address = "8006E020 ";
+                        camX1Address = "8006E122 ";
+                        camY2Address = "8006E124 ";
+                        camY1Address = "8006E126 ";
+                        camZ2Address = "8006E128 ";
+                        camZ1Address = "8006E12A ";
+                        camYaw2Address = "8006E040 ";
+                        camYaw1Address = "8006E042 ";
+                        camYaw4Address = "8006E074 ";
+                        camYaw3Address = "8006E076 ";
+                        camYaw6Address = "8006E09C ";
+                        camYaw5Address = "8006E09E ";
+                        jokerCommand = "D006E538 ";
+                        sparxHealthAddress = "800705A8 ";
+                        infiniteLivesCode = "8006C784 0099";
+                    }
 
                     LINE = 102480;
                     LINE2 = 102481;
@@ -1612,28 +1730,58 @@ int main(int, char**)
 
                 if (gameChoice == 3)
                 {
-                    spyroX2Address = "80070408 ";    //BACKWARDS CUZ BYTES LOLOLOL
-                    spyroX1Address = "8007040A ";
-                    spyroY2Address = "8007040C ";
-                    spyroY1Address = "8007040E ";
-                    spyroZ2Address = "80070410 ";
-                    spyroZ1Address = "80070412 ";
-                    spyroAngleAddress = "8007046C ";
-                    camX2Address = "8006E100 ";
-                    camX1Address = "8006E102 ";
-                    camY2Address = "8006E104 ";
-                    camY1Address = "8006E106 ";
-                    camZ2Address = "8006E108 ";
-                    camZ1Address = "8006E10A ";
-                    camYaw2Address = "8006E120 ";
-                    camYaw1Address = "8006E122 ";
-                    camYaw4Address = "8006E154 ";
-                    camYaw3Address = "8006E156 ";
-                    camYaw6Address = "8006E17C ";
-                    camYaw5Address = "8006E17E ";
-                    jokerCommand = "D006E618 ";
-                    sparxHealthAddress = "80070688 ";
-                    infiniteLivesCode = "8006C864 0099";
+                    if (publicPopstarterCheck == true)
+                    {
+
+                        spyroX2Address = "$80070408 ";    //BACKWARDS CUZ BYTES LOLOLOL
+                        spyroX1Address = "$8007040A ";
+                        spyroY2Address = "$8007040C ";
+                        spyroY1Address = "$8007040E ";
+                        spyroZ2Address = "$80070410 ";
+                        spyroZ1Address = "$80070412 ";
+                        spyroAngleAddress = "$8007046C ";
+                        camX2Address = "$8006E100 ";
+                        camX1Address = "$8006E102 ";
+                        camY2Address = "$8006E104 ";
+                        camY1Address = "$8006E106 ";
+                        camZ2Address = "$8006E108 ";
+                        camZ1Address = "$8006E10A ";
+                        camYaw2Address = "$8006E120 ";
+                        camYaw1Address = "$8006E122 ";
+                        camYaw4Address = "$8006E154 ";
+                        camYaw3Address = "$8006E156 ";
+                        camYaw6Address = "$8006E17C ";
+                        camYaw5Address = "$8006E17E ";
+                        jokerCommand = "$D006E618 ";
+                        sparxHealthAddress = "$80070688 ";
+                        infiniteLivesCode = "$8006C864 0099";
+                    }
+
+                    if (publicPopstarterCheck == false)
+                    {
+                        spyroX2Address = "80070408 ";    //BACKWARDS CUZ BYTES LOLOLOL
+                        spyroX1Address = "8007040A ";
+                        spyroY2Address = "8007040C ";
+                        spyroY1Address = "8007040E ";
+                        spyroZ2Address = "80070410 ";
+                        spyroZ1Address = "80070412 ";
+                        spyroAngleAddress = "8007046C ";
+                        camX2Address = "8006E100 ";
+                        camX1Address = "8006E102 ";
+                        camY2Address = "8006E104 ";
+                        camY1Address = "8006E106 ";
+                        camZ2Address = "8006E108 ";
+                        camZ1Address = "8006E10A ";
+                        camYaw2Address = "8006E120 ";
+                        camYaw1Address = "8006E122 ";
+                        camYaw4Address = "8006E154 ";
+                        camYaw3Address = "8006E156 ";
+                        camYaw6Address = "8006E17C ";
+                        camYaw5Address = "8006E17E ";
+                        jokerCommand = "D006E618 ";
+                        sparxHealthAddress = "80070688 ";
+                        infiniteLivesCode = "8006C864 0099";
+                    }
 
 
                     LINE = 102494;
@@ -2042,6 +2190,29 @@ int main(int, char**)
 
 
 
+                ImGui::Text(" ");
+
+                static bool popstarterCheck = false;
+                ImGui::Checkbox("Popstarter Code Format ($)", &popstarterCheck);
+                ImGui::SameLine();
+                HelpMarker("This will put $ before every line of code to support Popstarters code format.");
+
+
+
+                if (popstarterCheck == true)
+                {
+                    publicPopstarterCheck = true;
+                }
+
+                if (popstarterCheck == false)
+                    publicPopstarterCheck = false;
+
+
+                ImGui::Text(" ");
+
+
+
+
 
 
 
@@ -2057,18 +2228,37 @@ int main(int, char**)
                 hasCodeBeenCreated = true;
                 if (gameChoice == 0)
                 {
+                    if (publicPopstarterCheck == true)
+                    {
 
-                    spyroX2Address = "800778D8 ";    //BACKWARDS CUZ BYTES LOLOLOL
-                    spyroX1Address = "800778DA ";
-                    spyroY2Address = "800778DC ";
-                    spyroY1Address = "800778DE ";
-                    spyroZ2Address = "800778E0 ";
-                    spyroZ1Address = "800778E2 ";
-                    spyroRespawnL2 = "8007593C 0000";
-                    spyroRespawnL4 = "80077888 0001";
-                    spyroRespawnL6 = "800757D8 0004";
-                    jokerCommand = "D0077380 ";
-                    infiniteLivesCode = "8007582C 0099";
+                        spyroX2Address = "$800778D8 ";    //BACKWARDS CUZ BYTES LOLOLOL
+                        spyroX1Address = "$800778DA ";
+                        spyroY2Address = "$800778DC ";
+                        spyroY1Address = "$800778DE ";
+                        spyroZ2Address = "$800778E0 ";
+                        spyroZ1Address = "$800778E2 ";
+                        spyroRespawnL2 = "$8007593C 0000";
+                        spyroRespawnL4 = "$80077888 0001";
+                        spyroRespawnL6 = "$800757D8 0004";
+                        jokerCommand = "$D0077380 ";
+                        infiniteLivesCode = "$8007582C 0099";
+                    }
+
+                    if (publicPopstarterCheck == false)
+                    {
+
+                        spyroX2Address = "800778D8 ";    //BACKWARDS CUZ BYTES LOLOLOL
+                        spyroX1Address = "800778DA ";
+                        spyroY2Address = "800778DC ";
+                        spyroY1Address = "800778DE ";
+                        spyroZ2Address = "800778E0 ";
+                        spyroZ1Address = "800778E2 ";
+                        spyroRespawnL2 = "8007593C 0000";
+                        spyroRespawnL4 = "80077888 0001";
+                        spyroRespawnL6 = "800757D8 0004";
+                        jokerCommand = "D0077380 ";
+                        infiniteLivesCode = "8007582C 0099";
+                    }
 
                     LINE = 30886;
                     LINE2 = 30887;
@@ -2260,19 +2450,36 @@ int main(int, char**)
 
                 if (gameChoice == 1)
                 {
+                    if (publicPopstarterCheck == true)
+                    {
 
-                    spyroX2Address = "80067438 ";    //BACKWARDS CUZ BYTES LOLOLOL
-                    spyroX1Address = "8006743A ";
-                    spyroY2Address = "8006743C ";
-                    spyroY1Address = "8006743E ";
-                    spyroZ2Address = "80067440 ";
-                    spyroZ1Address = "80067442 ";
-                    spyroRespawnL2 = "800698EC 0000";
-                    spyroRespawnL4 = "800698F0 0000";
-                    spyroRespawnL6 = "800681C8 0003";
-                    jokerCommand = "D00683A0 ";
-                    infiniteLivesCode = "8006712C 0099";
+                        spyroX2Address = "$80067438 ";    //BACKWARDS CUZ BYTES LOLOLOL
+                        spyroX1Address = "$8006743A ";
+                        spyroY2Address = "$8006743C ";
+                        spyroY1Address = "$8006743E ";
+                        spyroZ2Address = "$80067440 ";
+                        spyroZ1Address = "$80067442 ";
+                        spyroRespawnL2 = "$800698EC 0000";
+                        spyroRespawnL4 = "$800698F0 0000";
+                        spyroRespawnL6 = "$800681C8 0003";
+                        jokerCommand = "$D00683A0 ";
+                        infiniteLivesCode = "$8006712C 0099";
+                    }
 
+                    if (publicPopstarterCheck == false)
+                    {
+                        spyroX2Address = "80067438 ";    //BACKWARDS CUZ BYTES LOLOLOL
+                        spyroX1Address = "8006743A ";
+                        spyroY2Address = "8006743C ";
+                        spyroY1Address = "8006743E ";
+                        spyroZ2Address = "80067440 ";
+                        spyroZ1Address = "80067442 ";
+                        spyroRespawnL2 = "800698EC 0000";
+                        spyroRespawnL4 = "800698F0 0000";
+                        spyroRespawnL6 = "800681C8 0003";
+                        jokerCommand = "D00683A0 ";
+                        infiniteLivesCode = "8006712C 0099";
+                    }
 
                     LINE = 27136;   // RESPAWN LOCATION LINES, NOT SPYRO POSITION
 
@@ -2478,17 +2685,36 @@ int main(int, char**)
 
                 if (gameChoice == 2)
                 {
-                    spyroX2Address = "8006D0AC ";    //BACKWARDS CUZ BYTES LOLOLOL
-                    spyroX1Address = "8006D0AE ";
-                    spyroY2Address = "8006D0B0 ";
-                    spyroY1Address = "8006D0B2 ";
-                    spyroZ2Address = "8006D0B4 ";
-                    spyroZ1Address = "8006D0B6 ";
-                    spyroRespawnL2 = "8006C598 0000";
-                    spyroRespawnL4 = "8006FBC8 0000";
-                    spyroRespawnL6 = "8006E344 0003";
-                    jokerCommand = "D006E538 ";
-                    infiniteLivesCode = "8006C784 0099";
+                    if (publicPopstarterCheck == true)
+                    {
+
+                        spyroX2Address = "$8006D0AC ";    //BACKWARDS CUZ BYTES LOLOLOL
+                        spyroX1Address = "$8006D0AE ";
+                        spyroY2Address = "$8006D0B0 ";
+                        spyroY1Address = "$8006D0B2 ";
+                        spyroZ2Address = "$8006D0B4 ";
+                        spyroZ1Address = "$8006D0B6 ";
+                        spyroRespawnL2 = "$8006C598 0000";
+                        spyroRespawnL4 = "$8006FBC8 0000";
+                        spyroRespawnL6 = "$8006E344 0003";
+                        jokerCommand = "$D006E538 ";
+                        infiniteLivesCode = "$8006C784 0099";
+                    }
+
+                    if (publicPopstarterCheck == false)
+                    {
+                        spyroX2Address = "8006D0AC ";    //BACKWARDS CUZ BYTES LOLOLOL
+                        spyroX1Address = "8006D0AE ";
+                        spyroY2Address = "8006D0B0 ";
+                        spyroY1Address = "8006D0B2 ";
+                        spyroZ2Address = "8006D0B4 ";
+                        spyroZ1Address = "8006D0B6 ";
+                        spyroRespawnL2 = "8006C598 0000";
+                        spyroRespawnL4 = "8006FBC8 0000";
+                        spyroRespawnL6 = "8006E344 0003";
+                        jokerCommand = "D006E538 ";
+                        infiniteLivesCode = "8006C784 0099";
+                    }
 
 
                     LINE = 102480;
@@ -2708,17 +2934,36 @@ int main(int, char**)
 
                 if (gameChoice == 3)
                 {
-                    spyroX2Address = "8006D18C ";    //BACKWARDS CUZ BYTES LOLOLOL
-                    spyroX1Address = "8006D18E ";
-                    spyroY2Address = "8006D190 ";
-                    spyroY1Address = "8006D192 ";
-                    spyroZ2Address = "8006D194 ";
-                    spyroZ1Address = "8006D196 ";
-                    spyroRespawnL2 = "8006FCA4 0000";
-                    spyroRespawnL4 = "8006FCA8 0000";
-                    spyroRespawnL6 = "8006E424 0003";
-                    jokerCommand = "D006E618 ";
-                    infiniteLivesCode = "8006C864 0099";
+                    if (publicPopstarterCheck == true)
+                    {
+
+                        spyroX2Address = "$8006D18C ";    //BACKWARDS CUZ BYTES LOLOLOL
+                        spyroX1Address = "$8006D18E ";
+                        spyroY2Address = "$8006D190 ";
+                        spyroY1Address = "$8006D192 ";
+                        spyroZ2Address = "$8006D194 ";
+                        spyroZ1Address = "$8006D196 ";
+                        spyroRespawnL2 = "$8006FCA4 0000";
+                        spyroRespawnL4 = "$8006FCA8 0000";
+                        spyroRespawnL6 = "$8006E424 0003";
+                        jokerCommand = "$D006E618 ";
+                        infiniteLivesCode = "$8006C864 0099";
+                    }
+
+                    if (publicPopstarterCheck == false)
+                    {
+                        spyroX2Address = "8006D18C ";    //BACKWARDS CUZ BYTES LOLOLOL
+                        spyroX1Address = "8006D18E ";
+                        spyroY2Address = "8006D190 ";
+                        spyroY1Address = "8006D192 ";
+                        spyroZ2Address = "8006D194 ";
+                        spyroZ1Address = "8006D196 ";
+                        spyroRespawnL2 = "8006FCA4 0000";
+                        spyroRespawnL4 = "8006FCA8 0000";
+                        spyroRespawnL6 = "8006E424 0003";
+                        jokerCommand = "D006E618 ";
+                        infiniteLivesCode = "8006C864 0099";
+                    }
 
 
 
